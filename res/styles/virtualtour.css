@@ -7,6 +7,7 @@ body {
     bottom: 0;
     right: 0;
     height: 100%;
+    z-index: -100;
 }
 
 #ghost {
@@ -46,6 +47,15 @@ section {
     font-family: 'Lato extrabold', Tahoma, Geneva, Verdana, sans-serif;
 }
 
+#wrapper {
+    background-color: black;
+    color: white;
+    text-align: center;
+    height: 100%;
+    width: 100%;
+    opacity: 1;
+}
+
 .heading {
     position: sticky;
     position: -webkit-sticky;
@@ -61,6 +71,14 @@ section {
     display: inline-block;
     margin: 0;
     padding: 0;
+}
+
+#screen {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0, 5, 30, 0.3);
+    z-index: 0;
 }
 
 #time-slider-container {

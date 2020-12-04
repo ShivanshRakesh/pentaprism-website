@@ -30,7 +30,9 @@
 </head>
 
 <body>
-
+    <div id="wrapper" class="fixed-top">
+        <h1>Loading...</h1>
+    </div>
     <section class="container-fluid custom" data-aos="fade-in" data-aos-duration="2000" data-aos-offset="100"
         style="height:1000px">
         <div class="heading-1">
@@ -62,6 +64,8 @@
 
     <!-- <div id="ghost"></div> -->
 
+    <div id="screen" class="fixed-top"></div>
+
     <video id="video" tabindex="0" autobuffer preload>
         <source type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' src="res/video-trimmed.mp4">
         </source>
@@ -77,6 +81,10 @@
         video.addEventListener('loadedmetadata', function () {
             totalHeight = Math.floor(video.duration) * scalingFactor;
             // ghost.style.height = totalHeight + "px";
+        });
+
+        video.addEventListener('loadeddata', () => {
+            document.getElementById('wrapper').style.opacity = '0';
         });
 
         function scrplay() {
