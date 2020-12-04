@@ -56,19 +56,27 @@
         <p class="heading">Here is another board!!</p>
     </section> -->
 
-    <div id="ghost"></div>
+    <div id="time-slider-container" class="fixed-bottom container pb-3">
+        <input type="range" min="0" max="100" value="0" class="slider" id="time-slider">
+    </div>
+
+    <!-- <div id="ghost"></div> -->
 
     <video id="video" tabindex="0" autobuffer preload>
         <source type='video/mp4; codecs="avc1.42E01E, mp4a.40.2"' src="res/video-trimmed.mp4">
         </source>
     </video>
     <script>
-        let ghost = document.getElementById("ghost"),
-            video = document.getElementById('video');
+        // let ghost = document.getElementById("ghost"),
+        let video = document.getElementById('video'),
+            slider = document.getElementById('time-slider');
+
+        let totalHeight = 0;
         const scalingFactor = 500;
 
         video.addEventListener('loadedmetadata', function () {
-            ghost.style.height = Math.floor(video.duration) * scalingFactor + "px";
+            totalHeight = Math.floor(video.duration) * scalingFactor;
+            // ghost.style.height = totalHeight + "px";
         });
 
         function scrplay() {
@@ -79,7 +87,12 @@
         window.requestAnimationFrame(scrplay);
 
         document.addEventListener("scroll", () => {
-            console.log(window.scrollY);
+            console.log("y=" + window.scrollY);
+            slider.value = parseInt((window.scrollY / totalHeight) * 100);
+        })
+
+        slider.addEventListener("input", (e) => {
+            window.scrollTo(window.scrollX, (e.target.value * totalHeight) / 100);
         })
 
     </script>
